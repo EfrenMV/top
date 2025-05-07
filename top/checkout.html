@@ -484,7 +484,8 @@
                         </div>
                       </li>
                     </ul>
-                    <a href="#." class="btn  btn-dark pull-right margin-top-30">PLACE ORDER</a> </div>
+                    <a href="#." class="btn  btn-dark pull-right margin-top-30" id="placeOrderBtn">PLACE ORDER</a> </div>
+                    <div id="paypal-button-container"></div>
                 </div>
               </div>
             </div>
@@ -604,5 +605,25 @@
 <script type="text/javascript" src="rs-plugin/js/jquery.tp.min.js"></script> 
 <script src="js/main.js"></script> 
 <script src="js/main.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=ARkVxHrYRbKE3hzIdmKzEYp5gtVvvP-AkQvdxWVPgjjVyKAJYgJygqka5Jmn_CRlFQ73Whvon6egcSna&currency=USD"></script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '10.00' // Monto de prueba
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Pago completado por ' + details.payer.name.given_name);
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
+
 </body>
 </html>
