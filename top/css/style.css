@@ -4225,9 +4225,11 @@ main {
 	padding: 0px;
 }
 
+/* Pa los botones de paypal */
 .buttons-container{
 	display: flex;
 	flex-direction: column;
+	gap: 10px;
 }
 .curency .bootstrap-select .dropdown-menu a {
 	padding: 0px;
